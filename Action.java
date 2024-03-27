@@ -1,5 +1,6 @@
 public interface Action {
 
-    String execute(BookingSystem bookingSystem);
+    String execute(User user, BookingSystem bookingSystem);
+    
     String menuDescription();
 }
