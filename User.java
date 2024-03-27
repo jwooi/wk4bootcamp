@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class User {
+public class User implements ActionCapable{
     private float balance;
     public boolean isUserDone = false;
     private static final ArrayList<Booking> booking_list = new ArrayList<>();
@@ -29,6 +29,15 @@ public class User {
                     detail);
         }
     }
+    
+    @Override
+    public List<Action> allowableActions() {
+    List<Action> actions = new ArrayList<>();
+    Booking booking = new Booking(this);
+    actions.add(new AddBookingAction(booking));
+    return actions;
+    }
+
     public float getBalance() {
         return balance;
     }
