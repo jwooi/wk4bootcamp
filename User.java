@@ -53,5 +53,9 @@ public class User implements ActionCapable{
         return isUserDone;
     }
 
+    public void removeBooking(Booking tbremoved){
+        booking_list.remove(tbremoved);
+    }
+
 
 }
