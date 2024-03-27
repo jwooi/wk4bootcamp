@@ -9,27 +9,26 @@ public class User implements ActionCapable{
         booking_list.add(myBooking);
     }
 
-    public static void displayBookedVehicles(){
-        for (Booking booking : booking_list){
+    public static void displayBookedVehicles() {
+        for (Booking booking : booking_list) {
+            Vehicle vehicle = booking.vehicle;
             String detail = "";
-            if (booking.vehicle instanceof Truck){
-                detail = "Loading: " + ((Truck) booking.vehicle).loading + " | ";
+
+            if (vehicle instanceof Truck) {
+                detail = "Loading: " + ((Truck) vehicle).loading;
+            } else if (vehicle instanceof SUV) {
+                detail = "Number of Seats: " + ((SUV) vehicle).seats +
+                        " | Engine Type: " + ((SUV) vehicle).EngineType;
+            } else if (vehicle instanceof Sedan) {
+                detail = "Range: " + ((Sedan) vehicle).range +
+                        " | Engine Type: " + ((Sedan) vehicle).EngineType;
             }
-            else if (booking.vehicle instanceof SUV){
-                detail = "Number of Seats: " + ((SUV) booking.vehicle).seats + " | " +
-                        "Engine Type: " + (((SUV) booking.vehicle).EngineType + " | ");
-            }
-            else
-                detail = "Range: " + ((Sedan) booking.vehicle).range + " | " +
-                        "Engine Type: " + (((Sedan) booking.vehicle).EngineType + " | ");
-            System.out.println("Booking detail: " +
-                    "Brand: " + booking.vehicle.brand + " | " +
-                    "Year: " + booking.vehicle.year + " | " +
-                    "Price: " + "$" + booking.vehicle.price + " per day" + " | " +
-                    detail);
+
+            System.out.println("Booking detail:\n" +
+                    vehicle.toString() + " | " + detail);
         }
     }
-    
+
     @Override
     public List<Action> allowableActions() {
     List<Action> actions = new ArrayList<>();

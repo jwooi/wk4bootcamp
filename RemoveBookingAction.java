@@ -1,0 +1,1 @@
+public class RemoveBookingAction implements Action {}
